@@ -1,0 +1,137 @@
+{% extends "pages/page.html" %}
+
+{% load mezzanine_tags shop_tags keyword_tags static i18n %}
+{% block body_id %}category{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static "icona_shop/css/category.css" %}?ver=3.3">
+    <link rel="stylesheet" href="{% static "icona_shop/css/mascara_area.css" %}?ver=2.0">
+    <link rel="stylesheet" href="{% static "icona_shop/css/labbra-text.css" %}?ver=1.1">
+{% endblock %}
+
+{% block main %}{{ block.super }}
+
+
+    <div class="section-banner">
+        {{ page.category.content | safe }}
+    </div>
+
+
+    <div class="container-home">
+        <h1 class="text-center title-category">
+            {{ page.category.title }}
+        </h1>
+
+        <div class="text-center short-text">
+            {{ page.category.short_text }}
+        </div>
+    </div>
+
+
+
+
+
+    <div class="container container-home products-wrapper" data-aos-delay="210" data-aos-once="true" data-aos="fade"  data-aos-duration="400" data-aos-easing="ease-in-back">
+        {% if child_categories %}
+            <div class="row shop-category-list">
+                {% if settings.SHOP_CATEGORY_USE_FEATURED_IMAGE %}
+                    {% for category in child_categories %}
+                        <div class="col-xs-12 col-sm-4 col-lg-3">
+                            <a href="{{ category.get_absolute_url }}" class="thumbnail">
+                                {% if category.featured_image %}
+                                    <img src="{{ MEDIA_URL }}{% thumbnail category.featured_image 148 148 %}"/>
+                                {% else %}
+                                    <div class="placeholder"></div>
+                                {% endif %}
+                                <div class="caption">
+                                    <h4>{{ category.title }}</h4>
+                                </div>
+                            </a>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    {% for category in child_categories %}
+                        <div class="col-xs-6 col-sm-4 col-lg-3">
+                            <a href="{{ category.get_absolute_url }}" class="thumbnail">
+                                <div class="caption"><h4>{{ category.title }}</h4></div>
+                            </a>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        {% endif %}
+
+        {% if products.paginator.count != 0 %}
+
+            {% if settings.SHOP_PRODUCT_SORT_OPTIONS.count > 0 %}
+                <form class="product-sorting" role="form">
+                    <div class="form-group">
+                        <label class="control-label" for="sorting-select">{% trans "Sort by" %}</label>
+                        <select onchange="location.href = this[this.selectedIndex].value;" class="form-control"
+                                id="sorting-select">
+                            {% for name, option in settings.SHOP_PRODUCT_SORT_OPTIONS %}
+                                {% if "rating" not in option or settings.SHOP_USE_RATINGS %}
+                                    <option{% if option == products.sort_by %} selected{% endif %}
+                                                                               value="{{ category.get_absolute_url }}?sort=
+                                                                                       {{ option }}{{ querystring }}">
+                                        {{ name }}
+                                    </option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                </form>
+            {% endif %}
+
+            <div class="product-list">
+                {#                Primero se ponen todos los productos marcados como new o limited_edition#}
+                {% for product in products.object_list %}
+
+                    {% if product.new_product or product.limited_edition %}
+                        {% include "icona_shop/product.html" with product=product %}
+                    {% endif %}
+                {% endfor %}
+
+                {#                Despues se ponen todos los productos que no se consideran nuevos#}
+                {% for product in products.object_list %}
+                    {% if not product.new_product and not product.limited_edition %}
+                        {% include "icona_shop/product.html" with product=product %}
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+            <div class="clearfix"></div>
+
+            {% pagination_for products %}
+
+        {% endif %}
+    </div>
+
+
+{% endblock %}
+
+
+{% block footer_js %}
+    <script>
+    /*
+        $(".container-home-labbra").attr("data-aos", "fade")
+        $(".container-home-labbra").attr("data-aos-duration", "500")
+        $(".container-home-labbra").attr("data-aos-once", "true")
+
+        $(".container-image-labbra").attr("data-aos", "fade")
+        $(".container-image-labbra").attr("data-aos-duration", "500")
+        $(".container-image-labbra").attr("data-aos-delay", "200")
+        $(".container-home-labbra").attr("data-aos-once", "true")
+
+
+        $(".container-home-ochi").attr("data-aos", "fade")
+        $(".container-home-ochi").attr("data-aos-duration", "500")
+        $(".container-home-ochi").attr("data-aos-once", "true")
+
+        $(".image_area_container").attr("data-aos", "fade")
+        $(".image_area_container").attr("data-aos-duration", "500")
+        $(".image_area_container").attr("data-aos-delay", "200")
+        $(".image_area_container").attr("data-aos-once", "true")
+        */
+    </script>
+{% endblock %}
