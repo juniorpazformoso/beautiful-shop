@@ -1,0 +1,173 @@
+{% extends "admin/base.html" %}
+{% load mezzanine_tags i18n staticfiles %}
+
+{% block title %}{{ title }} | Mezzanine{% endblock %}
+
+{% block javascripts %}
+    <script src="{% static "icona_shop/js/jquery.min.js" %}"></script>
+    <script src="{% static "icona_profile/js/dist/js/bootstrap-colorpicker.js" %}"></script>
+    <script>
+        {% url "static_proxy" as static_proxy_url %}
+        {% url "fb_browse" as fb_browse_url %}
+        {% url "displayable_links_js" as link_list_url %}
+        {% url "admin:index" as admin_index_url %}
+        {% get_current_language as LANGUAGE_CODE %}
+        window.__home_link = '<a href="{% url "home" %}">{% trans "View site" %}</a>';
+        window.__csrf_token = '{{ csrf_token }}';
+        window.__admin_keywords_submit_url = '{% url "admin_keywords_submit" %}';
+        window.__filebrowser_url = '{{ fb_browse_url }}';
+        window.__link_list_url = '{{ link_list_url }}';
+        window.__tinymce_css = '{% static "mezzanine/css/tinymce.css" %}';
+        window.__admin_url = '{{ admin_index_url }}';
+        window.__static_proxy = '{{ static_proxy_url }}';
+        window.__admin_media_prefix__ = '{% static "admin" %}/';
+        window.__grappelli_installed = {{ settings.GRAPPELLI_INSTALLED|lower }};
+        window.__admin_menu_collapsed = {{ settings.ADMIN_MENU_COLLAPSED|lower }};
+        window.__language_code = '{{ LANGUAGE_CODE }}';
+    </script>
+
+    <style>
+        .colorpicker.dropdown-menu {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          z-index: 1000;
+          display: none;
+          float: left;
+          min-width: 160px;
+          padding: 5px 0;
+          margin: 2px 0 0;
+          font-size: 14px;
+          text-align: left;
+          list-style: none;
+          background-color: #fff;
+          -webkit-background-clip: padding-box;
+                  background-clip: padding-box;
+          border: 1px solid #ccc;
+          border: 1px solid rgba(0, 0, 0, .15);
+          border-radius: 4px;
+          -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+                  box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+        }
+    </style>
+    <link rel="stylesheet" href="{% static "icona_profile/js/dist/css/bootstrap-colorpicker.css" %}">
+
+
+
+    {{ block.super }}
+    <script>
+        jQuery(function ($) {
+            $('.admin-title').click(function () {
+                location = window.__admin_url;
+            });
+            // This line can be removed after a decent amount of time has passed since
+            // https://github.com/stephenmcd/grappelli-safe/pull/56/files occurring.
+            $("#id_sitepermissions-__prefix__-sites").parent().parent().parent().remove();
+        });
+    </script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static "mezzanine/css/admin/global.css" %}">
+
+
+    <style>
+        .colorpicker {
+            -webkit-box-sizing: content-box !important;
+            box-sizing: content-box !important;
+        }
+
+        /* These are set in PageAdmin's view methods, and mezzanine.utils.admin.SingletonAdmin */
+        {% if hide_delete_link or singleton %}.submit-row .deletelink {
+            display: none !important;
+        }
+
+        {% endif %}
+        {% if hide_slug_field %}.slug {
+            display: none !important;
+        }
+
+        {% endif %}
+        {% if singleton %}.change-view-save-another {
+            display: none !important;
+        }
+
+        {% endif %}
+
+        .colorpicker {
+            height: 115px !important;
+            width: 95px !important;
+        }
+    </style>
+{% endblock %}
+
+{% block rtl_styles %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static "mezzanine/css/admin/rtl.css" %}"/>
+{% endblock %}
+
+{% block before_content %}
+    {% if user.is_staff and not is_popup and not request.GET.pop %}
+        {% admin_dropdown_menu %}
+    {% endif %}
+{% endblock %}
+
+{% block footer %}
+
+
+    <script>
+
+        $(".color input").addClass("jscolor")
+
+        $(".jscolor").attr("autocomplete", "off");
+
+        $(function () {
+            $(".jscolor").colorpicker()
+        })
+
+        $.each($(".jscolor"), function () {
+            $(this).css('background-color', $(this).val())
+
+            $(this).colorpicker().on('changeColor', function (e) {
+                $(this).css('background-color', e.color.toString('rgba'))
+            });
+        })
+
+        $("#images-group a").click(function () {
+            $(".jscolor").colorpicker()
+
+            $.each($(".jscolor"), function () {
+                $(this).css('background-color', $(this).val())
+
+                $(this).colorpicker().on('changeColor', function (e) {
+                    $(this).css('background-color', e.color.toString('rgba'))
+                });
+            })
+
+        })
+
+
+    </script>
+
+    {% if form.this_is_the_login_form %}
+        <script src="{% static "mezzanine/js/admin/login.js" %}"></script>
+
+    {% else %}
+        {% if user.is_staff %}
+            {% if not is_popup and not request.GET.pop %}
+                <link rel="stylesheet" href="{% static 'mezzanine/chosen/chosen.css' %}">
+                <script src="{% static 'mezzanine/chosen/chosen-0.9.12.jquery.js' %}"></script>
+                <script src="{% static 'mezzanine/js/admin/navigation.js' %}"></script>
+            {% endif %}
+
+
+            <script src="{% static 'mezzanine/js/admin/ajax_csrf.js' %}"></script>
+
+            {% if settings.GRAPPELLI_INSTALLED %}
+                <script src="{% static 'mezzanine/js/admin/collapse_backport.js' %}"></script>
+            {% endif %}
+        {% endif %}
+    {% endif %}
+{% endblock %}
+
