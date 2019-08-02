@@ -1,0 +1,60 @@
+#comments .comment-content{
+    border: 1px solid black;
+    padding: 15px;
+    background-color: white !important;
+    border-radius: 10px;
+}
+
+.form-comment{
+    display: none;
+}
+
+.input_id_url{
+    display: none !important;
+}
+
+#comments{
+	padding: 10px;
+}
+
+.button-public{
+    cursor: pointer;
+}
+
+.comment-author{
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.form-group > textarea {
+    width: 100% !important;
+    margin-bottom: 20px !important;
+    border-radius: 3px;
+    border: 0.7px solid #000000;
+    max-width: 100% !important;
+}
+
+.form-group > input[type="text"], .form-group > input[type="password"], .form-group > input[type="datetime"], .form-group > input[type="datetime-local"], .form-group > input[type="date"], .form-group > input[type="month"], .form-group > input[type="time"], .form-group > input[type="week"], .form-group > input[type="number"], .form-group > input[type="email"], .form-group > input[type="url"], .form-group > input[type="search"], .form-group > input[type="tel"], .form-group > input[type="color"], .form-group > select{
+    width: 100% !important;
+    margin-bottom: 20px !important;
+    border-radius: 3px;
+    height: 32px;
+    border: 0.7px solid #000000;
+    max-width: 100% !important;
+}
+
+.form-actions{
+    background: none !important;
+    border: none !important;
+    text-align: center;
+}
+
+.form-comment{
+    margin-top: 100px;
+}
+
+
+.form-comment h2{
+    text-align: center;
+}
