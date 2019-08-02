@@ -1,0 +1,67 @@
+.container-home{
+    margin-top: 140px;
+}
+
+.col-login{
+    padding-right: 60px;
+}
+
+.col-register{
+    padding-left: 60px;
+}
+
+.col-login h2, .col-register h2{
+    text-transform: uppercase;
+    color: black;
+    font-family: HelveticaNeue-Light-45;
+    text-align: center;
+    font-size: 21pt !important;
+    margin-bottom: 38px;
+}
+
+.form-group label{
+    font-size: 16px;
+}
+
+.form-group > input[type="text"], .form-group > input[type="password"], .form-group > input[type="datetime"], .form-group > input[type="datetime-local"], .form-group > input[type="date"], .form-group > input[type="month"], .form-group > input[type="time"], .form-group > input[type="week"], .form-group > input[type="number"], .form-group > input[type="email"], .form-group > input[type="url"], .form-group > input[type="search"], .form-group > input[type="tel"], .form-group > input[type="color"], .form-group > select, .form-group > textarea{
+    width: 100% !important;
+    margin-bottom: 20px !important;
+    border-radius: 3px;
+    height: 27px;
+    border: 1px solid #000000;
+    max-width: 100% !important;
+}
+
+.button-black-login{
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+    font-size: 21px;
+}
+
+.form-group{
+    margin-bottom: 30px !important;
+}
+
+.button-black-login{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    width: 130px !important;
+}
+
+.help-block{
+    position: relative;
+    bottom: 17px;
+}
+
+@media(max-width: 991px){
+    .col-login, .col-register{
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+
+    .col-register{
+        border: none !important;
+        margin-top: 60px;
+        border-top: dotted 0.6px gray !important;
+    }
+}
