@@ -1,0 +1,13 @@
+.region-comments{
+    margin-top: 100px;
+}
+
+.vote-area .info{
+    text-align: center;
+}
+
+.btn-rating{
+    padding: 10px !important;
+    padding-left: 2px !important;
+    padding-right: 2px !important;
+}
