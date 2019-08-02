@@ -1,0 +1,217 @@
+.review-post {
+    text-align: center;
+    background-color: #000000;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+    font-size: 16px;
+    color: white;
+}
+
+.recent-post .img-recent-post{
+    margin-bottom: 100px;
+}
+
+.review-post a{
+    color: white;
+}
+
+.blog-right-section{
+    border-left: dotted 0.6px gray;
+}
+
+.h2-header a{
+    color: black !important;
+}
+
+.gradientinscription{
+    background: -webkit-radial-gradient(ellipse at 50% 50%, rgba(251, 251, 251, 0.7) 80%, rgba(128,128,128, 0.2));
+    background: -moz-radial-gradient(ellipse at 50% 50%, rgba(251, 251, 251, 0.7) 80%, rgba(128,128,128, 0.2));
+    background: radial-gradient(ellipse at 50% 50%, rgba(251, 251, 251, 0.7) 80%, rgba(128,128,128, 0.2));
+}
+
+
+.recent-post{
+    margin-top: 200px;
+}
+
+.top-sidebar .header{
+    min-height: 167px;
+}
+
+.button-black a{
+    color: white !important;
+}
+
+
+.h2-header{
+    text-transform: uppercase;
+}
+
+.announce-maestri{
+    margin-top: 95px !important;
+}
+
+.blog-post{
+    margin-bottom: 100px;
+}
+
+.blog-post .caption-blog a {
+    color: black !important;
+}
+
+
+.blog-post .caption-blog {
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.col-blog-post {
+    padding-right: 70px;
+}
+
+.blog-post .blog-description {
+    text-align: center;
+    margin-top: 28px;
+}
+
+.blog-post .title-post {
+    margin-top: 0;
+}
+
+.inscription-column {
+    text-align: center;
+    padding-left: 60px;
+}
+
+.inscription-column .title-post {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+
+.blog-post .header {
+    min-height: 160px;
+}
+
+/*.recent-post .header {*/
+    /*min-height: 170px;*/
+/*}*/
+
+/*.recent-post .description {*/
+    /*margin-top: 28px;*/
+/*}*/
+
+.recent-post .header{
+    min-height: 170px;
+}
+
+.inscription {
+    margin-top: 80px;
+}
+
+.area-inscription {
+    margin-top: 50px;
+    position: relative;
+    padding-top: 35px;
+    padding-bottom: 35px;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.area-inscription .label-email{
+    font-size: 19px;
+    font-family: HelveticaNeue-Thin-13;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.button-public{
+    padding: 0 !important;
+    padding-top: 3px !important;
+    padding-bottom: 3px !important;
+}
+
+.area-inscription .button-inscr{
+    margin-top: 60px;
+    font-size: 16px !important;
+    border: none !important;
+}
+
+.button-black{
+    width: 100px !important;
+}
+
+.area-inscription .button-inscr a{
+    font-size: 19px;
+}
+
+.area-inscription .email-sub{
+    width: 100%;
+}
+
+article.il-brand p {
+    text-align: center;
+    margin-top: 30px;
+}
+
+article.il-brand h3 {
+    color: black;
+}
+
+
+@media (max-width: 992px) {
+    .col-blog-post {
+        padding-right: 15px;
+        border: none !important;
+    }
+
+    .inscription-column {
+        padding-left: 15px;
+        margin-top: 50px;
+    }
+}
+
+@media(max-width: 405px) {
+    .previous .button-black, .next .button-black {
+        padding: 0 !important;
+        width: 80px !important;
+        font-size: 13px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+    }
+}
+
+@media(max-width: 350px){
+    .h2-header{
+        font-size: 20px !important;
+    }
+
+    .area-inscription .label-email{
+        font-size: 18px !important;
+    }
+
+    .area-inscription .button-inscr{
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        padding-bottom: 4px !important;
+        padding-top: 4px !important;
+        margin-top: 60px !important;
+        width: 100%;
+    }
+}
+
+@media(max-width: 330px){
+    .area-inscription .button-inscr{
+        width: 120px !important;
+    }
+}
+
+@media(max-width: 305px){
+    .area-inscription .button-inscr{
+        width: 80px !important;
+    }
+}
