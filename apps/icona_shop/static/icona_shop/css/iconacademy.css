@@ -1,0 +1,56 @@
+.iconacademy-image{
+    position: relative;
+}
+
+.text-icona-academy{
+    position: absolute;
+    bottom: 7.2%;
+    left: 37.9%;
+    color: white;
+    font-size: 3.4vw;
+    text-transform: uppercase;
+}
+
+
+.text-make-up-store{
+    position: absolute;
+    color: white;
+    bottom: 7.3%;
+    left: 8%;
+    font-size: 2.57vw;
+    font-family: 'HelveticaNeue-Light-45';
+}
+
+.text-makeup-class{
+    position: absolute;
+    bottom: 7%;
+    right: 7.6%;
+    color: white;
+    font-size: 2.57vw;
+}
+
+
+@media(max-width: 902px){
+    .text-make-up-store{
+        bottom: 6.3%;
+    }
+
+    .text-icona-academy{
+        bottom: 6.2%;
+    }
+
+    .text-makeup-class{
+        bottom: 6%;
+    }
+}
+
+
+
+
+
+
+@media(max-width: 530px){
+    .position-text{
+        bottom: 3%;
+    }
+}
