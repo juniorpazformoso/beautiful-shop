@@ -1,0 +1,446 @@
+.img-section{
+    margin-top: 80px;
+}
+
+.points{
+    margin-top: 90px;
+    margin-bottom: 90px;
+}
+
+.img-la-qualita{
+    margin-top: 50px;
+}
+
+.header{
+    font-size: 26pt;
+    font-family: HelveticaNeue-Light-45;
+    margin-bottom: 25px;
+}
+
+.checkbox-section{
+    margin-bottom: 70px !important;
+}
+
+.gradientbox {
+    padding: 30px;
+}
+
+.section-form{
+    margin-top: 50px;
+    margin-bottom: 60px;
+}
+
+.section-form .container-form{
+    background-color: #f2f1f3;
+    border-radius: 4px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#contact{
+    margin-top: 100px !important;
+}
+
+.section-form p{
+    font-size: 13pt;
+    font-family: HelveticaNeue-Light-45;
+    text-align: center;
+    /*line-height: 20px;*/
+}
+
+/* Padre. Le aplicas la imagen de background. */
+#Icona_il_makeup_secondo_Icona_sin_texto {
+	height:329px; /* Estoy usando el height de la imagen de background */
+	width: 100%;
+	background-image: url(../img/Icona_il_makeup_secondo_Icona.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+	position: relative;
+}
+/* Hijo. El recuadro con borde negro. */
+/* Le he quitado el borde */
+#Rectangulo {
+	width: 100%;
+	/*border: 1px solid #111111;*/
+	text-align: center;
+
+	/* La distancia entre el borde y el div que contiene el texto. */
+	padding-top: 40px;
+	padding-bottom: 40px;
+
+	/* Esto lo poiciona centralmente ya sea en el eje X que en el eje Y */
+	position: absolute;
+	top: 47%; /* Ajuste un poco pues no quedaba en el centro, y no tuve el tiempo de ver porque no quedaba en el*/
+	left: 0; /* igual si pones 50%, lo que como ocupa el 100% del width también puedes posicionarlo en cero. */
+	transform: translate(0, -50%); /* igual si pones (-50%, -50%), lo que como ocupa el 100% del width también puedes estar en cero. */
+}
+/* Nieto. contiene el texto. */
+#Rectangulo .text-center {
+	/* esto, junto con el text-align:center del div anterior, es suficiente
+	   para que se posicione automaticamente en el centro del eje X. */
+	display: inline-block;
+    color: black;
+    background-color: rgba(255, 255, 255, 0.4);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 2.4vw;
+}
+
+.eye-image{
+    margin-top: 50px;
+    margin-bottom: 120px;
+}
+
+.eye-image img{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.ciao-image img{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.container-form{
+    padding-top: 72px;
+    padding-bottom: 15px;
+    padding-right: 45px !important;
+}
+
+.perfil input, .perfil select, .perfil textarea{
+    width: 100%;
+}
+
+
+.perfil label{
+    font-family: HelveticaNeue-Light-45;
+    font-size: 13pt;
+    font-weight: 100 !important;
+}
+
+.perfil .form-group{
+    margin-bottom: 33px;
+}
+
+.button-black{
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    border: none !important;
+    width: 100px !important;
+    font-family: HelveticaNeue-Light-45 !important;
+    font-size: 14pt !important;
+}
+
+.form-group-black{
+    padding-right: 15px;
+}
+
+article p{
+    margin-bottom: 26px;
+}
+
+.title-header{
+    text-transform: uppercase;
+    font-size: 26pt;
+    font-family: 'HelveticaNeue-Light-45' !important;
+    margin-top: 75px;
+    color: #000000;
+    line-height: 30pt;
+}
+
+.body-header{
+    margin-top: 30px;
+}
+
+.body-header p{
+    font-size: 13pt;
+    font-family: 'HelveticaNeue-Light-45';
+    line-height: 29px;
+}
+
+.body-header{
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+
+.icona-image-style{
+    margin-top: 50px;
+}
+
+.icona-image-style img{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.bold-text{
+    font-weight: 600;
+    color: #000000;
+}
+
+.qualita-text p{
+    font-size: 13pt;
+    font-family: 'HelveticaNeue-Light-45';
+}
+
+p{
+    line-height: 29px;
+}
+
+.header-banner {
+    position: absolute;
+    top: 74.9%;
+    left: 21.3%;
+    transform: translate(-13%, -50%);
+    font-size: 3vw;
+    padding-top: 29px;
+    padding-bottom: 29px;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: white;
+    background-color: rgba(255, 0, 0, 0.4);
+}
+
+.icona-image-style{
+    position: relative;
+}
+
+.style-text{
+    position: absolute;
+    top: 40%;
+    left: 12%;
+    /*transform: translate(-50%, -50%);*/
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    /*padding-left: 15px;*/
+    /*padding-right: 15px;*/
+
+    color: black;
+    background-color: rgba(255, 255, 255, 0.4);
+    font-size: 1.9vw;
+}
+
+
+@media(max-width: 1663px){
+    .header-banner{
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+
+    .style-text{
+        font-size: 2vw;
+        /*left: 22%;*/
+    }
+}
+
+@media(max-width: 1510px){
+    .style-text{
+        font-size: 2.2vw;
+        /*left: 20%;*/
+    }
+}
+
+@media(max-width: 1425px){
+    .style-text{
+        font-size: 2.3vw;
+        /*left: 18%;*/
+    }
+}
+
+@media(max-width: 1470px){
+    .body-header{
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    .body-header p{
+        font-size: 19px;
+    }
+}
+
+@media(max-width: 1340px){
+    @media(max-width: 1425px){
+        .style-text{
+            font-size: 2.4vw;
+            /*left: 16.7%;*/
+        }
+    }
+
+    .body-header{
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+@media(max-width: 1334px){
+    .style-text{
+        left: 12% !important;
+    }
+}
+
+@media(max-width: 1319px){
+    .style-text{
+        left: 7% !important;
+    }
+}
+
+@media(max-width: 1280px) {
+    @media (max-width: 1425px) {
+        .style-text {
+            font-size: 2.6vw;
+            /*left: 14%;*/
+        }
+    }
+}
+
+@media(max-width: 1035px){
+    .header-banner{
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .header-banner {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+
+
+@media(max-width: 1011px) {
+    .style-text {
+        font-size: 2.6vw;
+        left: 13.3%;
+        top: 38%;
+    }
+}
+
+@media(max-width: 991px){
+
+    #Icona_il_makeup_secondo_Icona_sin_texto{
+        height: 239px;
+    }
+
+    .container-form-consumer{
+        margin-bottom: 80px;
+    }
+
+    .consumer-label-movil{
+        margin-top: 100px;
+    }
+
+    .form-group-black{
+        padding-right: 92px;
+    }
+
+    .col-img-icona{
+        margin-bottom: 55px;
+    }
+
+    .checkbox-section{
+        margin-bottom: 15px;
+        margin-top: 50px;
+    }
+
+    .style-text {
+        padding-top: 7px;
+        padding-bottom: 7px;
+    }
+
+    .title-header{
+        font-size: 2em;
+    }
+}
+
+@media(max-width: 858px){
+    .header-banner{
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+
+    .header-banner {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+
+
+@media (max-width: 844px) {
+    .container-form{
+        padding-left: 30px !important;
+    }
+
+    .form-group-black{
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+}
+
+@media(max-width: 805px){
+    #Rectangulo .text-center{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+
+    #Rectangulo{
+        top: 49% !important;
+    }
+}
+
+@media(max-width: 767px){
+    .form-group-black{
+        padding-right: 20px;
+    }
+}
+
+@media(max-width: 755px){
+    .header-banner{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+}
+
+@media(max-width: 689px){
+    #Icona_il_makeup_secondo_Icona_sin_texto{
+        height: 186px !important;
+    }
+}
+
+@media(max-width: 585px){
+    .header-banner{
+        padding-top: 3px;
+        padding-bottom: 3px;
+        padding-left: 6px;
+        padding-right: 6px;
+    }
+
+    #Rectangulo .text-center{
+        padding-top: 1px;
+        padding-bottom: 1px;
+    }
+}
+
+
+@media(max-width: 435px){
+    #Icona_il_makeup_secondo_Icona_sin_texto{
+        height: 140px !important;
+    }
+
+    .header-banner{
+        padding-top: 0;
+        padding-bottom: 0;
+        padding-left: 3px;
+        padding-right: 3px;
+    }
+
+    .style-text {
+        padding-top: 2px;
+        padding-bottom: 2px;
+        font-size: 2.9vw;
+        padding-left: 0;
+        padding-right: 0;
+        top: 35%;
+    }
+}
