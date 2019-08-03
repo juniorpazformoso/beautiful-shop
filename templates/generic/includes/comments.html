@@ -1,0 +1,33 @@
+{% load i18n mezzanine_tags comment_tags %}
+<div id="comments" class="gradientbox">
+{{ comments_for_thread }}
+{% if settings.COMMENTS_DISQUS_SHORTNAME %}
+{% include "generic/includes/disqus_comments.html" %}
+{% else %}
+<script>
+$(function() {
+    $('.reply').click(function() {
+        $('.comment-reply-form').hide();
+        $(this).siblings('.comment-reply-form').toggle();
+    });
+});
+</script>
+<style>.input_id_honeypot {display:none !important;}</style>
+{% comment_thread object_for_comments %}
+</div>
+
+<div class="form-comment">
+<h2>{% trans "SCRIVI IL TUO NUOVO COMMENTO" %}</h2>
+<form method="post" id="comment" action="{{ comment_url }}#comment">
+    {% if not request.POST.replied_to %}
+    {% fields_for posted_comment_form %}
+    {% else %}
+    {% fields_for unposted_comment_form %}
+    {% endif %}
+    <div class="form-actions">
+        <input class="button-black" type="submit" value="{% trans "Invia" %}">
+    </div>
+</form>
+{% endif %}
+</div>
+
