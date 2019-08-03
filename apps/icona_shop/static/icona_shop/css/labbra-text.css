@@ -1,0 +1,162 @@
+.labbra-image{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    position: relative;
+}
+
+
+.text-image{
+    position: absolute;
+    top: 30.6%;
+    left: 43.7%;
+}
+
+.text-image .text-new-collection{
+    text-transform: uppercase;
+    font-family: HelveticaNeue-Light-45 !important;
+    margin-bottom: 2.3vw;
+    font-size: 2.5vw;
+    text-align: left;
+}
+
+
+.sub-text-1{
+    margin-bottom: 2.6vw;
+}
+
+.text-image .text-new-collection{
+    color: rgb(209, 50, 54);
+}
+
+.text-image .sub-text{
+    text-transform: uppercase;
+    font-family: HelveticaNeue-Light-45 !important;
+    font-size: 3.1vw !important;
+    color: white;
+    text-align: left;
+}
+
+@media(max-width: 1395px){
+    .text-image .text-new-collection{
+        font-size: 2.5vw;
+    }
+
+    .sub-text-1{
+        margin-bottom: 2.2vw;
+    }
+
+    .text-image .text-new-collection{
+        margin-bottom: 2vw;
+    }
+}
+
+
+@media(max-width: 1235px){
+
+    .header-maestri{
+        font-size: 20pt !important;
+    }
+
+    .sub-text-1{
+        margin-bottom: 2.2vw;
+    }
+
+    .text-image .text-new-collection{
+        margin-bottom: 1.6vw;
+        font-size: 2.4vw;
+    }
+
+    .text-image .sub-text{
+        font-size: 3vw !important;
+    }
+}
+
+
+@media(max-width: 1130px){
+    .sub-text-1{
+        margin-bottom: 1.9vw;
+    }
+
+    .text-image .text-new-collection{
+        margin-bottom: 1.3vw;
+    }
+}
+
+@media(max-width: 1035px){
+    .sub-text-1{
+        margin-bottom: 1.9vw;
+    }
+
+    .text-image .text-new-collection{
+        margin-bottom: 1.1vw;
+    }
+
+    .text-image{
+        top: 29.7%;
+    }
+
+    .text-image .sub-text{
+        font-size: 2.9vw !important;
+    }
+
+}
+
+
+@media(max-width: 992px){
+    .text-image .text-new-collection{
+        font-size: 2.6vw;
+    }
+
+    .text-image .sub-text{
+        font-size: 3.2vw !important;
+    }
+
+    .text-image .text-new-collection{
+        margin-bottom: 1.4vw;
+    }
+}
+
+@media(max-width: 835px){
+
+
+    .text-image .text-new-collection{
+        margin-bottom: 1vw;
+    }
+
+    .sub-text-1{
+        margin-bottom: 1vw;
+    }
+}
+
+
+@media(max-width: 670px){
+
+
+    .text-image{
+        top: 28%;
+    }
+
+    .text-image .text-new-collection{
+        margin-bottom: 0.2vw;
+    }
+
+    .sub-text-1{
+        margin-bottom: 0;
+    }
+}
+
+
+@media(max-width: 510px){
+    .text-image{
+        top: 28%;
+    }
+
+    .text-image .text-new-collection{
+        margin-bottom: -10px;
+    }
+
+    .sub-text-1{
+        margin-bottom: -5px;
+    }
+}
