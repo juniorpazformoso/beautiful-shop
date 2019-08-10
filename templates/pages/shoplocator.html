@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load static mezzanine_tags shop_tags i18n icona_geo_tags %}
+
+{% block meta_title %}{% trans "Shop locator" %}{% endblock %}
+{% block title %}{% trans "Shop locator" %}{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static "icona_geo/css/shop_locator.css" %}?ver=1.4">
+{% endblock %}
+
+
+{% block main %}
+
+
+    {% shop_locator_map %}
+
+
+    <div class="container" data-aos-delay="50" data-aos-once="true" data-aos="fade"  data-aos-duration="400" data-aos-easing="ease-in-back">
+
+        <div class="header-list">
+            <div class="header-maestri center-text">
+                {% trans "I PRODOTTI ICONA SONO SEMPRE PIÙ VICINI A TE" %}
+            </div>
+            <h2 class="subheader-map" data-aos-delay="90" data-aos-once="true" data-aos="fade"  data-aos-duration="400" data-aos-easing="ease-in-back">
+                Scegli il negozio dove acquistare i tuoi prodotti icona
+            </h2>
+        </div>
+
+
+
+        <div data-aos-delay="150" data-aos-once="true" data-aos="fade"  data-aos-duration="400" data-aos-easing="ease-in-back">
+            {% shop_locator_list %}
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+{% endblock %}
+
+{% block footer_js %}
+<script>
+
+    $("form").submit(function (){
+        search("Italia " + $("#cap_search").val())
+        return false
+    })
+
+
+    function search(address) {
+        geocoder = new google.maps.Geocoder();
+        geocoder.geocode({'address': address}, function (results, status) {
+
+            if (status == 'OK') {
+                locat = results[0].geometry.location
+                map.setCenter(results[0].geometry.location);
+
+                if ($("#distance_circle").val())
+                {
+                    var circleOptions = {
+                        strokeOpacity: 0,
+                        fillOpacity: 0,
+                        center: results[0].geometry.location,
+                        map: map,
+                        radius: parseFloat($("#distance_circle").val()) * 1000
+                    }
+
+                    var myCircle = new google.maps.Circle(circleOptions);
+                    map.fitBounds(myCircle.getBounds());
+                }
+            }
+        })
+    }
+</script>
+{% endblock %}
