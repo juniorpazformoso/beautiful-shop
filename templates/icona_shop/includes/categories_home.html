@@ -1,0 +1,28 @@
+{% load static i18n %}
+
+<div class="row" xmlns="http://www.w3.org/1999/html">
+{% for page in page_branch %}
+    <div class="col-md-4 center-text category categoryaos" data-aos-once="true" data-aos="fade"  data-aos-duration="400" data-aos-easing="ease-in-back">
+        <a href="{{ page.get_absolute_url }}">
+            <h2 class="category-title">{{ page.title }}</h2>
+        </a>
+
+        <div class="picture-category">
+            {% if page.category.featured_image %}
+                <a href="{{ page.get_absolute_url }}">
+                    <img src="{{ page.category.featured_image.url }}" class="img-responsive center-block"/>
+                </a>
+            {% else %}
+                <h3>Por favor seleccione esta imagen en el backend</h3>
+            {% endif %}
+
+        </div>
+
+        <a href="{{ page.get_absolute_url }}">
+            <div class="button-black button-black-category read-more">
+                {% trans "Scopri le nuove collezioni" %}
+            </div>
+        </a>
+    </div>
+{% endfor %}
+</div>

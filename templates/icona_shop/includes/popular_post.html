@@ -1,0 +1,26 @@
+{% load static i18n mezzanine_tags %}
+
+
+<div class="recent-post">
+    {% for blog_post in post_popular %}
+        <div class="header">
+            <h2 class="title-post h2-header">
+                <a href="{{ blog_post.get_absolute_url }}">{{ blog_post.title }}</a>
+            </h2>
+
+            <div class="description">
+                {% block blog_post_list_post_content %}
+                    {% editable blog_post.content %}
+                        {{ blog_post.description_from_content|safe }}
+                    {% endeditable %}
+                {% endblock %}
+            </div>
+        </div>
+
+        {% if blog_post.featured_image %}
+            <div class="picture">
+                <img src="{{ blog_post.featured_image.url }}" class="img-recent-post img-responsive center-block"/>
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>
