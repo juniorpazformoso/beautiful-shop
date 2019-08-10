@@ -1,0 +1,16 @@
+{% if social_reason %}
+    Ragione sociale: {{ social_reason }}<br>
+{% endif %}
+
+Nome: {{ first_name }}<br>
+Cognome: {{ last_name }}<br>
+Email: {{ email }}<br>
+Telefono: {{ cell_phone }}<br>
+Via e numero: {{ via_numero }}<br>
+Citt&agrave;: {{ city }}<br>
+Cap: {{ cap }}<br>
+
+
+
+<br>
+{{ message }}
