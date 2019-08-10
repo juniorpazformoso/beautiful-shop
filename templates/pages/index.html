@@ -1,0 +1,226 @@
+{% extends "base.html" %}
+{% load static mezzanine_tags shop_tags pages_tags i18n icona_blog_tags %}
+
+{% block meta_title %}{% trans "Home" %}{% endblock %}
+{% block title %}{% trans "Home" %}{% endblock %}
+
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static "icona_shop/css/home.css" %}?ver=2.7">
+    <link rel="stylesheet" href="{% static "icona_shop/css/labbra-text.css" %}?ver=1.2">
+    <link rel="stylesheet" href="{% static "icona_shop/css/iconacademy.css" %}?ver=1.2">
+{% endblock %}
+
+
+{% block main %}
+
+    <div class="markup-home">
+        <div class="section-banner">
+
+            <!-- Full Page Image Background Carousel Header -->
+            <div id="myCarousel" class="carousel slide" data-interval="4000" data-ride="carousel" data-pause="hover">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="first active"></li>
+                    <li class="second" data-target="#myCarousel" data-slide-to="1"></li>
+                    <li class="tercero" data-target="#myCarousel" data-slide-to="2"></li>
+                </ol>
+
+                <!-- Wrapper for Slides -->
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <img src="{% static "icona_shop/img/home_banner.jpg" %}" class="img-responsive"/>
+
+                        <!--
+                        <div class="carousel-caption">
+                            <h1 class="animated fadeInRight">LE DONNE SONO DI TUTO IL MONDO</h1>
+
+                            <h1 class="animated fadeInRight">MA IL MAKEUP E UN ARTE ITALIANA</h1>
+                        </div>
+                        -->
+                    </div>
+
+                    <div class="item">
+                        <div class="labbra-image">
+                            <img src="{% static "icona_shop/img/labbra_immagine_lancio.png" %}" class="img-responsive"
+                                 style="width: 100%;"/>
+
+                            <div class="text-image">
+                                <div class="text-new-collection animated fadeInRight">
+                                    New Collections:
+                                </div>
+
+                                <div class="sub-text sub-text-1 animated fadeInRight">
+                                    Statement Lips &
+                                </div>
+
+                                <div class="sub-text sub-text-2 animated fadeInRight">
+                                    Powdery Kiss
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="item">
+                        <div class="iconacademy-image">
+                            <img src="{% static "icona_shop/img/home_banner_3.jpg" %}"
+                                 class="img-responsive"/>
+
+
+                            <div class="text-make-up-store position-text animated fadeInRight remove-margin-bottom">
+                                Make-up in-store!
+                            </div>
+
+
+                            <div class="text-icona-academy position-text animated fadeInRight remove-margin-bottom">
+                                Icon<span class="lettera">a</span>cademy
+                            </div>
+
+
+                            <div class="text-makeup-class position-text animated fadeInRight remove-margin-bottom">
+                                Self make-up class!
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Controls -->
+                <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                    <span class="icon-prev"></span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                    <span class="icon-next"></span>
+                </a>
+
+            </div>
+        </div>
+
+
+        <div class="container">
+            <header class="announce-maestri" data-aos-once="true" data-aos="fade" data-aos-duration="400"
+                    data-aos-easing="ease-in-back">
+                <div class="header-maestri center-text header-maestri-home">
+                    E tu... Che tipo di donna Icona sei?
+                </div>
+
+                <div class="subtext-header" data-aos-once="true" data-aos="fade" data-aos-duration="400"
+                     data-aos-easing="ease-in-back">
+                    Scegli i prodotti Icona che esaltano la tua naturale bellezza
+                </div>
+            </header>
+
+            <div class="points points-sm points-header"></div>
+
+
+            <div class="main-categories container-home">
+
+                <div class="clearfix"></div>
+
+                {% categories_home %}
+
+
+                <div class="clearfix"></div>
+
+                <div class="points margin-top-70 points-middle"></div>
+
+
+                <h2 class="text-center area-mascara-header header" data-aos-once="true" data-aos="fade"
+                    data-aos-duration="400" data-aos-easing="ease-in-back">
+                    Cambierà il modo in cui ti guarderanno!
+                </h2>
+
+                {% include "icona_shop/mascara_area.html" %}
+
+
+
+                <div class="points points-video"></div>
+
+                {% include "icona_shop/includes/section-video-one.html" %}
+
+                {% include "icona_shop/includes/section-video-two.html" %}
+            </div>
+        </div>
+        <div class="background-collage" data-aos-once="true" data-aos="fade zoom-in" data-aos-duration="400" data-aos-easing="ease-in-back">
+            <div class="container">
+                <div class="block collage-img   col-md-12">
+                <img src="{% static 'icona_shop/img/Sfondo_Paralax.jpg' %}" data-speed="-3" class="img-parallax">
+
+                <div class="collage-center-text center-text">
+                    <div class="image-logo">
+                        <img src="{% static 'icona_shop/img/header_logo_Icona.png' %}"/>
+                    </div>
+
+                    <span class="text-collage">La bellezza made in Italy</span>
+                </div>
+
+
+                <div class="collage-center-button center-text">
+                    <a href="" class="button-black button-collage">{% trans "Scopri di piu" %}</a>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+    </div>
+{% endblock %}
+
+{% block footer_js %}
+    <!--<script src="{% static "icona_shop/js/iconaform.js" %}"></script>-->
+
+
+    <script>
+        $(".collage-center-text").click(function () {
+            location.href = "/icona"
+        })
+
+
+        $('.img-parallax').each(function () {
+            var img = $(this);
+            var imgParent = $(this).parent();
+
+
+            function parallaxImg() {
+                var speed = img.data('speed');
+
+                var imgY = imgParent.offset().top;
+                var winY = $(this).scrollTop();
+                var winH = $(this).height();
+                var parentH = imgParent.innerHeight();
+
+
+                // The next pixel to show on screen
+                var winBottom = winY + winH;
+
+                // If block is shown on screen
+                if (winBottom > imgY && winY < imgY + parentH) {
+                    // Number of pixels shown after block appear
+                    var imgBottom = ((winBottom - imgY) * speed);
+                    // Max number of pixels until block disappear
+                    var imgTop = winH + parentH;
+                    // Porcentage between start showing until disappearing
+                    var imgPercent = ((imgBottom / imgTop) * 100) + (50 - (speed * 50));
+                }
+                img.css({
+                    top: imgPercent + '%',
+                    transform: 'translate(-50%, -' + imgPercent + '%)'
+                });
+            }
+
+            $(document).on({
+                scroll: function () {
+                    parallaxImg();
+                }, ready: function () {
+                    parallaxImg();
+                }
+            });
+
+
+        });
+    </script>
+{% endblock %}
