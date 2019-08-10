@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+{% load static i18n %}
+
+{% block meta_title %}{% trans "Registered user" %}{% endblock %}
+{% block title %}{% trans "Registered user" %}{% endblock %}
+
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static "icona_login/css/login.css" %}?ver=1.4">
+    <link rel="stylesheet" href="{% static "icona_shop/js/formvalidation/formValidation.min.css" %}">
+{% endblock %}
+
+
+{% block main %}
+    <div class="container-home">
+        <div class="col-md-6 col-login">
+            <h2>{% trans "LOGIN" %}</h2>
+
+            <form action="{% url 'login_user' %}" method="POST" id="form-login">{% csrf_token %}
+                <div class="form-group">
+                    <label>Email *</label><br>
+                    <input type="text" name="email" class="form-control"/>
+                </div>
+
+                <div class="form-group">
+                    <label>Password *</label><br>
+                    <input type="password" name="password"/>
+                </div>
+
+                <div class="form-group center-text">
+                    <input class="button-black button-black-login" type="submit" value="{% trans "Invia" %}"/>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-md-6 left-border col-register">
+            <h2>{% trans "REGISTRAZIONE" %}</h2>
+
+            {% for message in messages %}
+                <div class="alert alert-{% if message.tags == "error" %}danger{% else %}success{% endif %} alert-dismissible alert-margin"
+                     role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    {{ message }}
+                </div>
+            {% endfor %}
+
+            <form action="{% url 'register_user' %}" method="POST" id="form-register">{% csrf_token %}
+                <div class="form-group">
+                    <label>Email *</label><br>
+                    <input type="text" name="email"/>
+                </div>
+
+                <div class="form-group">
+                    <label>Password *</label><br>
+                    <input type="password" name="password"/>
+                </div>
+
+                <div class="form-group">
+                    <label>Conferma password *</label><br>
+                    <input type="password" name="repeatpassword"/>
+                </div>
+
+                <div class="form-group center-text">
+                    <input class="button-black button-black-login" type="submit" value="{% trans "Invia" %}"/>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+{% endblock %}
+
+{% block footer_js %}
+    <script src="{% static "icona_shop/js/formvalidation/formValidation.min.js" %}"></script>
+    <script src="{% static "icona_shop/js/formvalidation/bootstrap.min.js" %}"></script>
+
+    <script>
+        $("form#form-login").formValidation({
+            framework: 'bootstrap',
+            icon: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                email: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Email is required'
+                        },
+                    }
+                },
+                password: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Password is required'
+                        },
+                    }
+                },
+            }
+        })
+
+        $("form#form-register").formValidation({
+            framework: 'bootstrap',
+            icon: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                email: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Email is required'
+                        },
+                    }
+                },
+                password: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Password is required'
+                        },
+                    }
+                },
+                repeatpassword: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Password is required'
+                        },
+                        identical: {
+                            field: 'password',
+                        }
+                    }
+                },
+            }
+        })
+    </script>
+{% endblock %}
