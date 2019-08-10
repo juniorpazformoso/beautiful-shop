@@ -1,0 +1,11 @@
+{% load static %}
+
+
+
+{% for field in rating_fields %}
+    <label class="container-control">
+        <input name="{{ field.data.name }}" type="{{ field.data.type }}" value="{{ field.data.value }}"/>
+        <span class="checkmark"></span><br>
+        <span class="label-rating">{{ field.data.label }}</span>
+    </label>
+{% endfor %}

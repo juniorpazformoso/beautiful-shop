@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="{{ LANGUAGE_CODE }}"{% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
+{% load pages_tags mezzanine_tags  i18n staticfiles  %}
+
+<head>
+
+
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="{% block meta_keywords %}{% endblock %}">
+    <meta name="description" content="{% block meta_description %}{% endblock %}">
+    <title>
+        {% block meta_title %}{% endblock %}{% if settings.SITE_TITLE %} | {{ settings.SITE_TITLE }}{% endif %}</title>
+    <link rel="shortcut icon" href="{% static "img/favicon.ico" %}">
+
+    {% ifinstalled mezzanine.blog %}
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="{% url "blog_post_feed" "rss" %}">
+        <link rel="alternate" type="application/atom+xml" title="Atom" href="{% url "blog_post_feed" "atom" %}">
+    {% endifinstalled %}
+
+    {% compress css %}
+        <link rel="stylesheet" href="{% static "icona_shop/js/aos/aos.css" %}">
+        <link rel="stylesheet" href="{% static "css/bootstrap.css" %}">
+        <link rel="stylesheet" href="{% static "css/mezzanine.css" %}">
+        <link rel="stylesheet" href="{% static "css/bootstrap-theme.css" %}">
+        {% if LANGUAGE_BIDI %}
+            <link rel="stylesheet" href="{% static "css/bootstrap-rtl.css" %}">
+        {% endif %}
+        {% ifinstalled cartridge.shop %}
+            <link rel="stylesheet" href="{% static "css/cartridge.css" %}">
+            {% if LANGUAGE_BIDI %}
+                <link rel="stylesheet" href="{% static "css/cartridge.rtl.css" %}">
+            {% endif %}
+        {% endifinstalled %}
+        <link rel="stylesheet" href="{% static "icona_shop/css/base.css" %}?ver=3.2">
+
+        {% block extra_css %}{% endblock %}
+    {% endcompress %}
+
+    {% compress js %}
+{#        <script src="{% static "mezzanine/js/"|add:settings.JQUERY_FILENAME %}"></script>#}
+        <script src="{% static "icona_shop/js/jquery.min.js" %}"></script>
+        <script src="{% static "js/bootstrap.js" %}"></script>
+        <script src="{% static "js/bootstrap-extras.js" %}"></script>
+        {% block extra_js %}{% endblock %}
+    {% endcompress %}
+
+    <!--[if lt IE 9]>
+<script src="{% static "icona_blog/js/html5shiv.js" %}"></script>
+<script src="{% static "icona_blog/js/respond.min.js" %}"></script>
+<![endif]-->
+
+    {% block extra_head %}{% endblock %}
+
+    <style>
+        .category-title{
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+
+<body id="{% block body_id %}body{% endblock %}">
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v3.2&appId=1206850876092394&autoLogAppEvents=1';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+<!--<div class="superheader-wrapper">
+    <div class="header-wrapper100">-->
+        <header id="header" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container-navbar">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">{% trans "Toggle Navigation" %}</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    {% block navbar_title %}
+                        {% if settings.SITE_TITLE %}
+                            <a class="navbar-brand" href="/">
+
+                            <!--
+                                <div id="sitetitle-navbar">{{ settings.SITE_TITLE }}</div>
+                                {% if settings.SITE_TAGLINE %}
+                                    <div class="navbar-text visible-lg" style="color: gray;">{{ settings.SITE_TAGLINE }}
+                                    </div>
+                                {% endif %}
+                                -->
+                            <img src="{% static 'icona_shop/img/header_logo_Icona.png' %}"/>
+
+                            </a>
+                        {% endif %}
+                    {% endblock %}
+                </div>
+
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        {% block navbar_dropdown_menu %}{% page_menu "pages/menus/dropdown.html" %}{% endblock%}
+                    </ul>
+                </div>
+
+            </div>
+        </header>
+<!--
+    </div>
+</div>
+-->
+
+
+
+{% block main %}{% endblock %}
+
+
+
+<footer>
+        <div class="col-md-4 column-footer">
+            <h2>{% trans "Icona" %}</h2>
+            <div class="points points-sm"></div>
+            <div>
+                <a href="/icona#ilbrand">II Brand</a>
+            </div>
+            <div>
+                <a href="/icona#quality">Qualità</a>
+            </div>
+            <div>
+                <a href="/icona#partner">Diventa Partner</a>
+            </div>
+            <div>
+                <a href="/icona#contact">Contattaci</a>
+            </div>
+            <div>
+                <a href="#">Privacy</a>
+            </div>
+            <div>
+                <a href="#">Cookies</a>
+            </div>
+        </div>
+        <div class="col-md-4 column-footer">
+            <h2>{% trans "PRODOTTI" %}</h2>
+            <div class="points points-sm"></div>
+            {% page_menu "icona_shop/footer-category.html" %}
+        </div>
+        <div class="col-md-4 column-footer">
+            <h2>{% trans "SOCIAL" %}</h2>
+            <div class="points points-sm"></div>
+            <div>
+                <a target="_blank" href="https://www.instagram.com/iconamilanomakeup/">Instagram</a>
+            </div>
+            <div>
+                <a target="_blank" href="https://www.facebook.com/iconamilanomakeup/">Facebook</a>
+            </div>
+            <div>
+                <a href="#">Netichette</a>
+            </div>
+        </div>
+
+    <div class="clearfix"></div>
+</footer>
+<div class="sub-footer"></div>
+<script src="{% static "icona_shop/js/aos/aos.js" %}?ver=1.2"></script>
+
+
+
+{% block footer_js %}
+    {% include "includes/footer_scripts.html" %}
+{% endblock %}
+
+<script>
+    AOS.init({ disable: 'mobile' });
+</script>
+
+</body>
+</html>

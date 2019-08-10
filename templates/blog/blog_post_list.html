@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% load i18n  mezzanine_tags blog_tags keyword_tags disqus_tags static icona_blog_tags%}
+
+{% block meta_title %}{% if page %}{{ page.meta_title }}{% else %}{% trans "Blog" %}{% endif %}{% endblock %}
+
+{% block meta_keywords %}{% metablock %}
+    {% keywords_for page as keywords %}
+    {% for keyword in keywords %}
+        {% if not forloop.first %}, {% endif %}
+        {{ keyword }}
+    {% endfor %}
+{% endmetablock %}{% endblock %}
+
+{% block meta_description %}{% metablock %}
+    {{ page.description }}
+{% endmetablock %}{% endblock %}
+
+{% block title %}
+    {% if page %}
+        {% editable page.title %}{{ page.title }}{% endeditable %}
+    {% else %}
+        {% trans "Blog" %}
+    {% endif %}
+{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static "icona_blog/css/blog.css" %}"/>
+    <link rel="stylesheet" href="{% static "icona_shop/js/formvalidation/formValidation.min.css" %}"/>
+{% endblock %}
+
+{% block breadcrumb_menu %}
+    {{ block.super }}
+    {% if tag or category or year or month or author %}
+        <li>{% spaceless %}
+            {% if tag %}
+                {% trans "Tag:" %} {{ tag }}
+                {% else %}{% if category %}
+                    {% trans "Category:" %} {{ category }}
+                    {% else %}{% if year or month %}
+                        {% if month %}{{ month }}, {% endif %}{{ year }}
+                        {% else %}{% if author %}
+                            {% trans "Author:" %} {{ author.get_full_name|default:author.username }}
+                        {% endif %}{% endif %}{% endif %}{% endif %}
+        {% endspaceless %}
+        </li>
+    {% endif %}
+{% endblock %}
+
+{% block main %}
+    <div class="container-home">
+        <header class="announce-maestri">
+            <div class="header-maestri center-text">
+                {% trans "MAESTRO ITIALIANIO DEL MAKEUP" %}
+            </div>
+        </header>
+
+        <div class="col-md-7 col-blog-post">
+            {% for blog_post in blog_posts.object_list %}
+                <div class="blog-post">
+                    <div class="header">
+                        <div class="caption-blog">
+                            {% block blog_post_list_post_title %}
+                                {% editable blog_post.title %}
+                                    <h2 class="title-post">
+                                        <a href="{{ blog_post.get_absolute_url }}">{{ blog_post.title }}</a>
+                                    </h2>
+                                {% endeditable %}
+                            {% endblock %}
+                        </div>
+
+                        <div class="blog-description">
+                            {% block blog_post_list_post_content %}
+                                {% editable blog_post.content %}
+                                    {{ blog_post.description_from_content|safe }}
+                                {% endeditable %}
+                            {% endblock %}
+                        </div>
+                    </div>
+
+                    {% block blog_post_list_post_metainfo %}
+                        {% if settings.BLOG_USE_FEATURED_IMAGE and blog_post.featured_image %}
+                            {% block blog_post_list_post_featured_image %}
+                                <a href="{{ blog_post.get_absolute_url }}">
+                                    <img class="img-responsive center-block" src="{{ blog_post.featured_image.url }}">
+                                </a>
+                            {% endblock %}
+                        {% endif %}
+                    {% endblock %}
+
+                    <div class="review-post">
+                        <a href="{{ blog_post.get_absolute_url }}">{% trans "Scopri di piu" %}</a>
+                    </div>
+                </div>
+
+                {% if not forloop.last %}
+                    <div class="points-sm"></div>
+                {% endif %}
+                <div class="clearfix"></div>
+            {% endfor %}
+        </div>
+
+
+        {% include "icona_shop/inscription-blog.html" %}
+
+        <div class="clearfix"></div>
+    </div>
+
+{% endblock %}
+
+{% block right_panel %}
+    {% include "blog/includes/filter_panel.html" %}
+{% endblock %}
+
+{% block footer_js %}
+    <script src="{% static "icona_shop/js/formvalidation/formValidation.min.js" %}"></script>
+    <script src="{% static "icona_shop/js/formvalidation/bootstrap.min.js" %}"></script>
+    <script src="{% static "icona_profile/js/csrf.js" %}"></script>
+    <script src="{% static "icona_blog/js/subscription.js" %}"></script>
+{% endblock %}

@@ -1,0 +1,157 @@
+{% extends "blog/blog_post_list.html" %}
+{% load mezzanine_tags comment_tags keyword_tags rating_tags i18n disqus_tags static icona_geo_tags  icona_blog_tags %}
+
+{% block meta_title %}{{ blog_post.meta_title }}{% endblock %}
+
+{% block meta_keywords %}{% metablock %}
+    {% keywords_for blog_post as tags %}
+    {% for tag in tags %}{% if not forloop.first %}, {% endif %}{{ tag }}{% endfor %}
+{% endmetablock %}{% endblock %}
+
+{% block meta_description %}{% metablock %}
+    {{ blog_post.description }}
+{% endmetablock %}{% endblock %}
+
+{% block title %}
+    {% editable blog_post.title %}{{ blog_post.title }}{% endeditable %}
+{% endblock %}
+
+{% block breadcrumb_menu %}
+    {{ block.super }}
+    <li class="active">{{ blog_post.title }}</li>
+{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static "icona_blog/css/post.css" %}">
+    <link rel="stylesheet" href="{% static "icona_blog/css/blog-comments.css" %}?ver=1.0">
+    <link rel="stylesheet" href="{% static "icona_shop/css/custom-control.css" %}"/>
+    <link rel="stylesheet" href="{% static "icona_blog/css/rating-post.css" %}"/>
+    <link rel="stylesheet" href="{% static "icona_shop/js/formvalidation/formValidation.min.css" %}"/>
+{% endblock %}
+
+{% block main %}
+    <div class="container-home">
+        <header class="announce-maestri">
+            <div class="header-maestri center-text">
+                {% trans "MAESTRO ITIALIANIO DEL MAKEUP" %}
+            </div>
+        </header>
+        <div class="col-md-7 col-blog-post">
+            <div class="blog-post">
+                <div class="header">
+                    <div class="caption-blog">
+                        {% block blog_post_list_post_title %}
+                            {% editable blog_post.title %}
+                                <h2 class="title-post">
+                                    <a href="{{ blog_post.get_absolute_url }}">{{ blog_post.title }}</a>
+                                </h2>
+                            {% endeditable %}
+                        {% endblock %}
+                    </div>
+
+                    <div class="blog-description">
+                        {% block blog_post_list_post_content %}
+                            {% editable blog_post.content %}
+                                {{ blog_post.description_from_content|safe }}
+                            {% endeditable %}
+                        {% endblock %}
+                    </div>
+                </div>
+
+                {% block blog_post_list_post_metainfo %}
+                    {% if settings.BLOG_USE_FEATURED_IMAGE and blog_post.featured_image %}
+                        {% block blog_post_list_post_featured_image %}
+                            <a href="{{ blog_post.get_absolute_url }}">
+                                <img class="img-responsive center-block" src="{{ blog_post.featured_image.url }}">
+                            </a>
+                        {% endblock %}
+                    {% endif %}
+                {% endblock %}
+                <div class="vote-area">
+                    <div class="info">
+                        <h2>
+                            {% trans "DA UN VOTO A QUESTO POST" %}
+                        </h2>
+
+
+                        <div class="body">
+                            Le tue opinioni sono molto importanti per noi! Ci aiutano a conoscere i
+                            tuoi interessi e punti di vista per offrirti sempre più informazioni, consiglio,
+                            segreti e tutorial perché tu possa migliorare sempre di più il tuo look!
+                        </div>
+                    </div>
+
+                    {% block blog_post_detail_rating %}
+                        {% rating_for blog_post %}
+                    {% endblock %}
+
+                    {% block blog_post_previous_next %}
+                        <ul class="pager">
+                            {% with blog_post.get_previous_by_publish_date as previous %}
+                                {% if previous %}
+                                    <li class="previous">
+                                        <a class="button-black" href="{{ previous.get_absolute_url }}">{% trans "Precedente" %}</a>
+                                    </li>
+                                {% endif %}
+                            {% endwith %}
+                            {% with blog_post.get_next_by_publish_date as next %}
+                                {% if next %}
+                                    <li class="next">
+                                        <a class="button-black" href="{{ next.get_absolute_url }}">{% trans "Prossimo" %}</a>
+                                    </li>
+                                {% endif %}
+                            {% endwith %}
+                        </ul>
+                    {% endblock %}
+                </div>
+
+
+                {#                <div class="review-post">#}
+                {#                    {% trans "Scopri di piu" %}#}
+                {#                </div>#}
+
+                <div class="region-comments">
+                    <div class="explanation center-text">
+                        <h2 class="center-text">{% trans "LASCIA IL TUO COMMENTO" %}</h2>
+
+                        <div class="commets-description">
+                            Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor
+                            incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrum
+                            exercitationem.
+                            As commodi consequatur. Quis aute iure reprehenderit in voluptate velit esse cillum dolore
+                            eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident.
+                        </div>
+                    </div>
+
+                    {% block blog_post_detail_comments %}
+                        {% if blog_post.allow_comments %}
+                            {% comments_for blog_post %}
+                            <div class="button-public button-black center-text">{% trans "Commenta" %}</div>
+                        {% endif %}
+                    {% endblock %}
+
+                </div>
+            </div>
+
+            {% if not forloop.last %}
+                <div class="points-sm"></div>
+            {% endif %}
+
+
+            <div class="clearfix"></div>
+        </div>
+
+        {% include "icona_shop/inscription-blog.html" %}
+
+        <div class="clearfix"></div>
+    </div>
+{% endblock %}
+
+{% block footer_js %}
+    <script src="{% static "icona_shop/js/formvalidation/formValidation.min.js" %}"></script>
+    <script src="{% static "icona_shop/js/formvalidation/bootstrap.min.js" %}"></script>
+    <script src="{% static "icona_blog/js/comment.js" %}"></script>
+    <script src="{% static "icona_profile/js/csrf.js" %}"></script>
+    <script src="{% static "icona_blog/js/subscription.js" %}"></script>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% load static blog_tags %}
+
+{% blog_categories as categories %}
+{% if categories %}
+    {% for category in categories %}
+        <li>
+            <a href="{% url "blog_post_list_category" category.slug %}">{{ category }}</a>
+        </li>
+    {% endfor %}
+{% endif %}
