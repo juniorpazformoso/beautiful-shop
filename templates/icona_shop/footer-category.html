@@ -1,0 +1,8 @@
+
+{% for page in page_branch %}
+    {% if page.category %}
+        <div>
+            <a href="{{ page.get_absolute_url }}">{{ page.title }}</a>
+        </div>
+    {% endif %}
+{% endfor %}
