@@ -1,0 +1,163 @@
+{% extends "pages/page.html" %}
+{% load static icona_shop_tags mezzanine_tags shop_tags pages_tags i18n icona_blog_tags %}
+
+{% block meta_title %}{% trans "Home" %}{% endblock %}
+{% block title %}{% trans "Home" %}{% endblock %}
+
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static "icona_shop/css/home.css" %}?ver=1.9">
+    <link rel="stylesheet" href="{% static "icona_shop/css/labbra-text.css" %}?ver=1.2">
+    <link rel="stylesheet" href="{% static "icona_shop/css/iconacademy.css" %}?ver=1.2">
+    <link rel="stylesheet" href="{% static "icona_shop/css/mascara_area.css" %}?ver=1.1">
+{% endblock %}
+
+
+{% block main %}{{ block.super }}
+    {% home_content page %}
+{% endblock %}
+
+{% block footer_js %}
+    <script>
+        $(".imgspeed").attr("data-speed", "-3")
+
+        $(".header-maestri").attr("data-aos-duration", "1000")
+        $(".header-maestri").attr("data-aos-once", "true")
+        $(".header-maestri").attr("data-aos-easing", "ease-in-back")
+        $(".header-maestri").attr("data-aos", "fade")
+
+
+
+        $(".categoryaos").attr("data-aos-duration", "1000")
+        $(".categoryaos").attr("data-aos-once", "true")
+        $(".categoryaos").attr("data-aos-easing", "ease-in-back")
+        $(".categoryaos").attr("data-aos", "fade")
+
+        $(".image_area_container").attr("data-aos-once", "true")
+        $(".image_area_container").attr("data-aos-easing", "ease-in-back")
+        $(".image_area_container").attr("data-aos", "fade")
+
+
+        $(".video1").attr("data-aos-once", "true")
+        $(".video1").attr("data-aos-easing", "ease-in-back")
+        $(".video1").attr("data-aos", "fade")
+
+        $(".video2").attr("data-aos-once", "true")
+        $(".video2").attr("data-aos-easing", "ease-in-back")
+        $(".video2").attr("data-aos", "fade")
+        $(".video2").attr("data-aos-duration", "1000")
+
+        $(".video3").attr("data-aos-once", "true")
+        $(".video3").attr("data-aos-easing", "ease-in-back")
+        $(".video3").attr("data-aos", "fade")
+        $(".video3").attr("data-aos-duration", "1000")
+
+        $(".video4").attr("data-aos-once", "true")
+        $(".video4").attr("data-aos-easing", "ease-in-back")
+        $(".video4").attr("data-aos", "fade")
+        $(".video4").attr("data-aos-duration", "1000")
+
+        $(".video5").attr("data-aos-once", "true")
+        $(".video5").attr("data-aos-easing", "ease-in-back")
+        $(".video5").attr("data-aos", "fade")
+        $(".video5").attr("data-aos-duration", "1000")
+        $(".video5").attr("data-aos-offset", "220")
+
+        $(".video6").attr("data-aos-once", "true")
+        $(".video6").attr("data-aos-easing", "ease-in-back")
+        $(".video6").attr("data-aos", "fade zoom-in")
+        $(".video6").attr("data-aos-duration", "1000")
+        $(".video6").attr("data-aos-offset", "220")
+
+
+        $(".announce-maestri").attr("data-aos-duration", "1000")
+        $(".announce-maestri").attr("data-aos-once", "true")
+        $(".announce-maestri").attr("data-aos-easing", "ease-in-back")
+        $(".announce-maestri").attr("data-aos", "fade")
+
+
+        $(".collage-img").attr("data-aos-duration", "1000")
+        $(".collage-img").attr("data-aos-once", "true")
+        $(".collage-img").attr("data-aos-easing", "ease-in-back")
+        $(".collage-img").attr("data-aos", "fade zoom-in")
+
+        $(".area-mascara-header").attr("data-aos-duration", "1000")
+        $(".area-mascara-header").attr("data-aos-once", "true")
+        $(".area-mascara-header").attr("data-aos-easing", "ease-in-back")
+        $(".area-mascara-header").attr("data-aos", "fade")
+
+
+
+
+        $(".left").attr("data-slide", "prev")
+        $(".right").attr("data-slide", "next")
+
+        $(".first").attr("data-target", "#myCarousel")
+        $(".second").attr("data-target", "#myCarousel")
+        $(".tercero").attr("data-target", "#myCarousel")
+        $(".first").attr("data-slide-to", "0")
+        $(".second").attr("data-slide-to", "1")
+        $(".tercero").attr("data-slide-to", "2")
+
+
+
+
+
+
+        $(".collage-center-text").click(function () {
+            location.href = "/icona"
+        })
+
+
+        $('.img-parallax').each(function () {
+            var img = $(this);
+            var imgParent = $(this).parent();
+
+
+            function parallaxImg() {
+                var speed = img.data('speed');
+
+                var imgY = imgParent.offset().top;
+                var winY = $(this).scrollTop();
+                var winH = $(this).height();
+                var parentH = imgParent.innerHeight();
+
+
+                // The next pixel to show on screen
+                var winBottom = winY + winH;
+
+                // If block is shown on screen
+                if (winBottom > imgY && winY < imgY + parentH) {
+                    // Number of pixels shown after block appear
+                    var imgBottom = ((winBottom - imgY) * speed);
+                    // Max number of pixels until block disappear
+                    var imgTop = winH + parentH;
+                    // Porcentage between start showing until disappearing
+                    var imgPercent = ((imgBottom / imgTop) * 100) + (50 - (speed * 50));
+                }
+                img.css({
+                    top: imgPercent + '%',
+                    transform: 'translate(-50%, -' + imgPercent + '%)'
+                });
+            }
+
+            $(document).on({
+                scroll: function () {
+                    parallaxImg();
+                }, ready: function () {
+                    parallaxImg();
+                }
+            });
+
+        })
+
+
+            /*
+            AOS.init({
+				easing: 'ease-out-back',
+				duration: 750
+			});
+			*/
+
+    </script>
+{% endblock %}
