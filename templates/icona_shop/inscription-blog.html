@@ -1,0 +1,67 @@
+{% load static i18n icona_blog_tags %}
+
+<div class="inscription-column blog-right-section col-md-4">
+    <div class="top-sidebar">
+        <div class="header">
+            <h2 class="title-post h2-header">
+                <a href="#">I TIPS DI SIMONA</a>
+            </h2>
+
+            <div class="description">
+                Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore
+                et dolore magna aliqua. Ut enim ad minim veniam, quis nostrum exercitationem.
+            </div>
+        </div>
+
+
+        <div class="picture">
+            <img src="{% static 'icona_shop/img/Simona.jpg' %}" class="img-recent-post img-responsive center-block"/>
+        </div>
+    </div>
+
+    <div class="inscription">
+
+
+        {% if blog_post.featured_image %}
+            <div class="picture">
+                <img src="{{ blog_post.featured_image.url }}" class="img-recent-post img-responsive center-block"/>
+            </div>
+        {% endif %}
+
+        <h2 class="title-post h2-header">
+            {% trans "RICEVI AGGIORNAMENTI" %}
+        </h2>
+
+        <div class="description">
+            Lorem ipsum dolor sit amet,
+            consectetur adipisci elit, sed
+            eiusmod tempor incidunt ut labore
+            et dolore magna aliqua.
+        </div>
+
+        <div class="gradientinscription area-inscription">
+            {% for message in messages %}
+                <div class="alert alert-{% if message.tags == "error" %}danger{% else %}success{% endif %} alert-dismissible alert-margin"
+                     role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    {{ message }}
+                </div>
+            {% endfor %}
+
+            <form action="{% url 'subscriptor_email' %}" id="form-subscription">
+                <label for="email-subsription" class="label-email">
+                    {% trans "Inserisci la tua mail:" %}
+                </label>
+                <div class="form-group">
+                    <input type="email" name="emailsubscription" class="email-sub"/>
+                </div>
+
+                <input class="button-black button-inscr" type="submit" value="Inscriviti"/>
+            </form>
+        </div>
+    </div>
+
+
+    {% popular_post %}
+</div>

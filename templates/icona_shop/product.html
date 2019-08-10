@@ -1,0 +1,45 @@
+{% load static i18n %}
+
+<div class="col-md-4  center-text">
+    <div class="product" style="position: relative;">
+        {% if product.new_product %}
+            <!--
+            <div class="product-new">
+                <span class="text-new">{% trans "NEW!" %}</span>
+            </div>
+            -->
+            <img src="{% static 'icona_shop/img/new_product.png' %}" class="image-special-product"/>
+        {% elif product.limited_edition %}
+            <img src="{% static 'icona_shop/img/limited_edition.png' %}" class="image-special-product"/>
+        {% endif %}
+
+        <a href="{{ product.get_absolute_url }}">
+            <div class="img-product">
+                <img src="{{ product.featured_image.url }}"
+                     class="img-responsive center-block"/>
+            </div>
+        </a>
+
+        <div class="product-info">
+            <h3 class="title">{{ product.title }}</h3>
+
+            <div class="subtitle">
+                {{ product.artext }}
+            </div>
+
+            <div class="shor-description">
+                {% if product.short_description_listing %}
+                    {{ product.short_description_listing }}
+                {% else %}
+                    {{ product.short_description }}
+                {% endif %}
+            </div>
+        </div>
+
+        <a href="{{ product.get_absolute_url }}">
+            <div class="button-black">
+                {% trans "Scopri di più" %}
+            </div>
+        </a>
+    </div>
+</div>
