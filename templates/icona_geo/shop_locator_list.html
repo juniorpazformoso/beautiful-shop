@@ -1,0 +1,21 @@
+<div class="shop-locator-list">
+    {% for profile in profiles %}
+
+        {% if profile.is_public %}
+
+            <div class="col-md-4">
+                <div class="shop-locator-data">
+                    <h4 class="title">{{ profile.business_name }}</h4>
+                    <div class="artname">
+                        {{ profile.business_postal_address }}
+                    </div>
+                    {% if profile.business_phone %}
+                        <div class="cellphone">
+                            Tel. {{ profile.business_phone }}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>

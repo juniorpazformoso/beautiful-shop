@@ -1,0 +1,85 @@
+{% load  i18n %}
+<div id="map" style="top: -15px;"></div>
+
+
+<form class="form-horizontal form-map" role="form">
+    <input type="submit" style="visibility: hidden"/>
+    <div class="col-md-6">
+        <label for="inputKey" class="col-md-5 control-label">Inserisci Localitá o CAP</label>
+        <div class="col-md-5">
+            <input type="text"  id="cap_search">
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <label for="inputKey" class="col-md-5 control-label">Inserisci distanza in chilometri</label>
+        <div class="col-md-5">
+            <input type="text"  id="distance_circle">
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</form>
+
+
+
+<script>
+
+    var map;
+    function placeMarkup(address) {
+        geocoder = new google.maps.Geocoder();
+
+        geocoder.geocode({'address': address}, function (results, status) {
+            if (status == 'OK') {
+                // var uluru = {lat: 42, lng: 11};
+                var uluru = results[0].geometry.location
+
+
+
+                var marker = new google.maps.Marker({
+                    position: uluru,
+                    map: map
+                });
+
+            }
+        });
+    }
+
+
+    function initMap() {
+        var uluru = {lat: 42, lng: 11};
+        map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 6,
+            center: uluru
+        });
+
+        {% for profile in profiles %}
+            {% if profile.is_public %}
+                placeMarkup("{{ profile.business_postal_address }}, {{ profile.business_cap.cap }}, {{ profile.business_city.name }}")
+            {% endif %}
+        {% endfor %}
+
+
+    }
+
+    $(window).resize(function() {
+      // This will execute whenever the window is resized
+
+        if ($(window).width() <= 700){
+            map.setZoom(5)
+        }
+        else if ($(window).width() <= 600){
+            map.setZoom(4)
+        }
+        else{
+            map.setZoom(6)
+        }
+    });
+
+
+
+
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOe-yzfnq1Piu136e7H5X_uV8aTLCR3ig&callback=initMap" async
+        defer>
+</script>
