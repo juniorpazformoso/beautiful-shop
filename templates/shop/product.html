@@ -1,0 +1,450 @@
+{% extends "shop/base.html" %}
+{% load staticfiles mezzanine_tags shop_tags rating_tags icona_shop_tags i18n %}
+
+{% block meta_title %}{{ product.meta_title }}{% endblock %}
+{% block body_id %}category{% endblock %}
+
+{% block meta_keywords %}{% metablock %}
+    {% for keyword in product.keywords.all %}
+        {% if not forloop.first %}, {% endif %}
+        {{ keyword }}
+    {% endfor %}
+{% endmetablock %}{% endblock %}
+
+{% block meta_description %}{% metablock %}
+    {{ product.description }}
+{% endmetablock %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static "mezzanine/css/magnific-popup.css" %}?ver=1.1">
+    <link rel="stylesheet" href="{% static "icona_shop/css/tarjeta-product.css" %}?ver=4.6"/>
+{% endblock %}
+
+{% block extra_js %}
+    {{ block.super }}
+    <script src="{% static "mezzanine/js/magnific-popup.js" %}"></script>
+    <script>
+        $(document).ready(function () {
+            $('#product-images-large').magnificPopup({
+                delegate: 'a',
+                type: 'image',
+                gallery: {
+                    enabled: true,
+                }
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block extra_head %}
+    {{ block.super }}
+    <script>var variations = {{ variations_json|safe }};</script>
+    <script src="{% static "cartridge/js/product_variations.js" %}"></script>
+{% endblock %}
+
+{% block breadcrumb_menu %}
+    {{ block.super }}
+    <li>{{ product.title }}</li>
+{% endblock %}
+
+{% block title %}
+    {% editable product.title %}{{ product.title }}{% endeditable %}
+{% endblock %}
+
+
+
+
+{% block main %}
+
+    <div class="container-home">
+        <div class="col-sm-6 col-main-column">
+
+            <div class="title content-title-movile">
+                <h2 class="title-product">{{ product.title }}</h2>
+            </div>
+
+
+            {% if images %}
+                <ul id="product-images-large" class="list-unstyled list-inline">
+                    {% for image in images %}
+                        <li class="large-img" id="image-{{ image.id }}-large" {% if not forloop.first %}style="display:none;"{% endif %}>
+                            <a href="{{ MEDIA_URL }}{{ image.file }}">
+                                <img alt="{{ image.description }}" src="{{ image.file.url }}" class="img-responsive">
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            <div class="artext-movile">
+                <span class="art-text">{{ product.artext }}</span>
+            </div>
+
+            <div class="header-maestri header-maestri-colors short-description-movile">
+                {{ product.short_description }}
+            </div>
+
+            {% if images %}
+                <div class="product-version-movil">
+                    {% product_version_desktop images %}
+                </div>
+
+                {% if images|length != 1 %}
+                    <!--
+                    <ul id="product-images-thumb" class="list-unstyled list-inline product-version-movil">
+                        {% for image in images %}
+                        <li>
+                            <a href="javacript:void(0)" data-pk="{{ image.id }}" class="product-version {% if forloop.first %}selected-product{% endif %}">
+                                {% if image.texture %}
+                                    <div data-pk="{{ image.id }}" class="size change-img" style="background-image: url({{ image.texture.url }}); margin-bottom: 5px; background-size: cover; height:70px; width: 70px;">
+                                        <span class="content">
+                                            {% if image.number <= 9 %}
+                                                0{{ image.number }}
+                                            {% else %}
+                                                {{ image.number }}
+                                            {% endif %}
+                                        </span>
+                                    </div>
+                                {% else %}
+                                    <div data-pk="{{ image.id }}" class="size change-img" style="height: 70px; width: 70px; background-color: {{ image.color }}; margin-bottom: 5px;">
+                                        <span class="content">
+                                            {% if image.number <= 9 %}
+                                                0{{ image.number }}
+                                            {% else %}
+                                                {{ image.number }}
+                                            {% endif %}
+                                        </span>
+                                    </div>
+                                {% endif %}
+                            </a>
+
+                            <span class="description-version">
+                                {{ image.description }}
+                            </span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    -->
+                {% endif %}
+            {% endif %}
+            <a class="button-preferiti button-preferiti-movil  button-black" href="javascript:void(0);">
+                {% trans "Lista dei preferiti!" %}
+            </a>
+
+            <div class="block-info block-description content-product-movil">
+                    <div class="block-text">
+                        <div class="title-block title-description">{% trans "DESCRIZIONE" %}</div>
+                        <div class="text">
+                            {{ product.content|richtext_filters|safe }}
+                        </div>
+
+                        <div class="plus-content plus-content-movil content-product-movil">
+                            <div class="title-block title-plus">{% trans "PLUS" %}</div>
+
+                            <div class="plus-section">
+                                {{ product.plus_content|richtext_filters|safe }}
+                                <!--<a href="#" class="ingredients-link" data-toggle="modal" data-target="#ingredientsModal">{% trans "Clicca qui per vedere gli ingredienti." %}</a>-->
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-version-product">
+            <div class="product-data text-center">
+                <div class="data-content">
+
+                    <div class="title content-title-desktop">
+                        <h2 class="title-product">{{ product.title }}</h2>
+                    </div>
+
+
+                    <div class="artext-desktop">
+                        <span class="art-text">{{ product.artext }}</span>
+                    </div>
+                </div>
+
+                <div class="header-maestri header-maestri-colors short-description-desktop">
+                    {{ product.short_description }}
+                </div>
+
+
+                    {% if images %}
+
+                        <div class="product-version-desktop">
+                            {% product_version_desktop images %}
+                        </div>
+
+
+                            <!--
+                            <ul id="product-images-thumb" class="list-unstyled list-inline product-version-desktop">
+                                {% for image in images %}
+                                <li>
+                                    <a href="javacript:void(0)" data-pk="{{ image.id }}" class="product-version {% if forloop.first %}selected-product{% endif %}">
+                                        {% if image.texture %}
+                                            <div data-pk="{{ image.id }}" class="size change-img" style="background-image: url({{ image.texture.url }}); margin-bottom: 5px; background-size: cover; height:70px; width: 70px;">
+                                                <span class="content">
+                                                    {% if image.number <= 9 %}
+                                                        0{{ image.number }}
+                                                    {% else %}
+                                                        {{ image.number }}
+                                                    {% endif %}
+                                                </span>
+                                            </div>
+                                        {% else %}
+                                            <div data-pk="{{ image.id }}" class="size change-img" style="height: 70px; width: 70px; background-color: {{ image.color }}; margin-bottom: 5px;">
+                                                <span class="content">
+                                                    {% if image.number <= 9 %}
+                                                        0{{ image.number }}
+                                                    {% else %}
+                                                        {{ image.number }}
+                                                    {% endif %}
+                                                </span>
+                                            </div>
+                                        {% endif %}
+
+                                    </a>
+                                    <span class="description-version">
+                                        {{ image.description }}
+                                    </span>
+
+                                </li>
+                                {% endfor %}
+                            </ul>
+                            -->
+
+                    {% endif %}
+
+                    <a class="button-preferiti button-preferiti-desktop  button-black" href="javascript:void(0);">
+                        {% trans "Lista dei preferiti!" %}
+                    </a>
+
+
+                    <div class="clearfix"></div>
+
+
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="container-home container-home-button content-product-bottom">
+        <div class="col-sm-6">
+            <div class="block-info block-description">
+                    <div class="block-text">
+                        <div class="title-block title-description">{% trans "DESCRIZIONE" %}</div>
+                        <div class="text">
+                            {% editable product.content %}
+                                {{ product.content|richtext_filters|safe }}
+                            {% endeditable %}
+                        </div>
+                    </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <div class="title-block title-plus">{% trans "PLUS" %}</div>
+
+            <div class="plus-section">
+                {{ product.plus_content|richtext_filters|safe }}
+                <!--<a class="ingredients-link" data-toggle="modal" data-target="#ingredientsModal">{% trans "Clicca qui per vedere gli ingredienti." %}</a>-->
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+
+
+    <div id="ingredientsModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+
+          <div class="modal-body">
+            <div class="content-modal">
+                <div class="title-modal-header">
+                    {% trans "Ingredienti" %}:
+                </div>
+
+                <div class="text-content">
+                    {{ product.ingredients }}
+                </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <div id="modal-preferiti" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+
+          <div class="modal-body">
+            <div class="content-modal">
+                <div class="text-content">
+                    <br>
+                    <h2>Preferenza salvata</h2>
+                </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    {% if images %}
+        {% spaceless %}
+            {#<ul id="product-images-large" class="list-unstyled list-inline">#}
+            {#    {% for image in images %}#}
+            {#    <li id="image-{{ image.id }}-large"{% if not forloop.first %}style="display:none;"{% endif %}>#}
+            {#        <a class="product-image-large" href="{{ MEDIA_URL }}{{ image.file }}">#}
+            {#            <img alt="{{ image.description }}" src="{{ image.file.url }}" class="img-responsive">#}
+            {#        </a>#}
+            {#    </li>#}
+            {#    {% endfor %}#}
+            {#</ul>#}
+
+            {#{% if images|length != 1 %}#}
+            {#<ul id="product-images-thumb" class="list-unstyled list-inline">#}
+            {#    {% for image in images %}#}
+            {#    <li>#}
+            {#        <a class="thumbnail" id="image-{{ image.id }}" href="{{ MEDIA_URL }}{{ image.file }}">#}
+            {#            <img alt="{{ image.description }}" src="{{ MEDIA_URL }}{% thumbnail image.file 75 75 %}">#}
+            {#        </a>#}
+            {#    </li>#}
+            {#    {% endfor %}#}
+            {#</ul>#}
+            {#{% endif %}#}
+
+        {% endspaceless %}
+    {% endif %}
+
+    {#{% editable product.content %}#}
+    {#{{ product.content|richtext_filters|safe }}#}
+    {#{% endeditable %}#}
+
+    {% if product.available and has_available_variations %}
+        {#<ul id="variations" class="list-unstyled">#}
+        {#    {% for variation in variations %}#}
+        {#    <li id="variation-{{ variation.sku }}"#}
+        {#        {% if not variation.default %}style="display:none;"{% endif %}>#}
+        {#        {% if variation.has_price %}#}
+        {#            {% if variation.on_sale %}#}
+        {#                <span class="old-price">{{ variation.unit_price|currency }}</span>#}
+        {#                {% trans "On sale:" %}#}
+        {#            {% endif %}#}
+        {#            <span class="price">{{ variation.price|currency }}</span>#}
+        {#        {% else %}#}
+        {#            {% if has_available_variations %}#}
+        {#            <span class="error-msg">#}
+        {#            {% trans "The selected options are currently unavailable." %}#}
+        {#            </span>#}
+        {#            {% endif %}#}
+        {#        {% endif %}#}
+        {#    </li>#}
+        {#    {% endfor %}#}
+        {#</ul>#}
+
+        {% errors_for add_product_form %}
+
+{#        <form method="post" id="add-cart" class="shop-form">#}
+            {#    {% fields_for add_product_form %}#}
+{#            <div class="form-actions">#}
+                {#        <input type="submit" class="btn btn-primary btn-lg pull-right" name="add_cart" value="{% trans "Buy" %}">#}
+{#                {% if settings.SHOP_USE_WISHLIST %}#}
+{#                    <input type="submit" class="btn btn-default btn-lg pull-left" name="add_wishlist"#}
+{#                           value="{% trans "Save for later" %}">#}
+{#                {% endif %}#}
+{#            </div>#}
+{#        </form>#}
+    {% else %}
+        <p class="error-msg">{% trans "This product is currently unavailable." %}</p>
+    {% endif %}
+
+    {#{% if settings.SHOP_USE_RATINGS %}#}
+    {#<div class="panel panel-default rating">#}
+    {#    <div class="panel-body">{% rating_for product %}</div>#}
+    {#</div>#}
+    {#{% endif %}#}
+
+    {% include "shop/include/modal_auth.html" %}
+{% endblock %}
+
+
+{% block footer_js %}
+    <script src="{% static "icona_profile/js/csrf.js" %}"></script>
+    <script src="{% static "icona_shop/js/bootbox.js" %}"></script>
+
+
+    <script>
+
+        {% for p in product.variations.all %}
+            {% if p.default %}
+                $("#product-images-large .large-img").hide()
+                $("#image-{{ p.image.pk }}-large").show()
+                $(".product-version-{{ p.image.pk }}").addClass("selected-product")
+            {% endif %}
+        {% endfor %}
+
+
+        $(".change-img").click(function (){
+            $("#product-images-large .large-img").hide()
+
+            var pk = $(this).data('pk')
+            $("#image-" + pk + "-large").show()
+        })
+
+        $(".product-version").click(function (e){
+            e.preventDefault()
+            $(".product-version").removeClass('selected-product')
+            $(this).addClass('selected-product')
+        })
+
+        $(".button-preferiti").click(function (){
+            {% if user.is_authenticated %}
+                var product_version = $(".selected-product").data('pk')
+
+
+
+                if (product_version){
+                    var url = "{% url 'save_product' %}"
+
+
+                    $.ajax({
+                        url: url,
+                        type: 'POST',
+                        dataType: 'json',
+                        data: {'product_img_pk': product_version, 'product_id': "{{ product.id }}"},
+                        success: function (){
+                            $("#modal-preferiti").modal()
+                            /*
+                            bootbox.alert({
+                                message: "The preference was save successfully",
+                                size: 'small',
+                                buttons: {
+                                    ok: {
+                                        label: 'Closed'
+                                    },
+                                }
+                            })
+                            */
+                        }
+                    })
+                }
+            {% else %}
+                location.href = "{% url 'login_user' %}"
+            {% endif %}
+        })
+
+        $("#{{ product.categories.all.0.slug.lower }}").addClass("active")
+    </script>
+{% endblock %}
+
