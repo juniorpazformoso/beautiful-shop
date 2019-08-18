@@ -16,8 +16,9 @@ __pycache__/
 
 # Django stuff:
 *.log
-#local_settings.py
 
+#local_settings.py
+#*.db
 
 # dotenv
 .env
@@ -29,10 +30,9 @@ ENV/
 .vscode
 
 .DS_Store
-*.sqlite3
-media/
+#*.sqlite3
+#media/
 *.pyc
-*.db
 *.pid
 # django migrations 
 **/migrations/**
