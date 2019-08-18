@@ -3,4 +3,5 @@
 Simple django shop gallery with products and categories.
 This simple gallery used Django Mezzanine and Cartrige.
 
-**local_settings.py** and sample database in **sqlite** is included for faster started.
+**local_settings.py**, **media** and **sqlite** database are included to
+have a faster way to start this project.
