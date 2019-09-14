@@ -6,7 +6,7 @@ Mezzanine is a powerful, consistent, and flexible content management platform.<b
 Cartridge is a shopping cart application built using the Django framework.
 
 This project uses Mezzanine and Cartridge to create a quick demo of a product
-store organized by categories.
+shop organized by categories.
 
 **local_settings.py**, **media** and **sqlite** database are included to
 have a faster way to start.
