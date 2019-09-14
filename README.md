@@ -1,8 +1,12 @@
-# iconamilano
+# beautiful-shop
 
+Django shop with beautiful templates and animations.
+
+Mezzanine is a powerful, consistent, and flexible content management platform.<br>
 Cartridge is a shopping cart application built using the Django framework.
-Mezzanine is a powerful, consistent, and flexible content management platform.
-This projects is inspired in https://www.iconamakeup.com shop
+
+This project uses Mezzanine and Cartridge to create a quick demo of a product
+store organized by categories.
 
 **local_settings.py**, **media** and **sqlite** database are included to
-have a faster way to start this project.
+have a faster way to start.
