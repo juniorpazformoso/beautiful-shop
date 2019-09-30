@@ -11,6 +11,6 @@ shop organized by categories.
 **local_settings.py**, **media** and **sqlite** database are included to
 have a faster way to start.
 
-# HOW USE <br>
+# How Use <br>
 **pip install -r requirements.txt**<br>
 **python manage.py runserver**
