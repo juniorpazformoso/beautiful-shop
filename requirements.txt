@@ -1,4 +1,4 @@
-Django==1.11.3
+Django==1.11.29
 Mezzanine==4.3.1
 Cartridge==0.13.0
 # Python-PostgreSQL Database Adapter
